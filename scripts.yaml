@@ -1,0 +1,94 @@
+  timed_light_back_flood:
+    alias: "Turn on light and set timer"
+    sequence:
+      - service: script.turn_off
+        data:
+           entity_id: script.timer_off_back_flood
+      - service: switch.turn_on
+        data:
+          entity_id: switch.back_flood_switch
+      - service: script.turn_on
+        data:
+          entity_id: script.timer_off_back_flood
+  timer_off_back_flood:
+    alias: "Turn off light after 10 minutes"
+    sequence:
+      - delay:
+          minutes: 10
+      - service: switch.turn_off
+        data:
+          entity_id: switch.back_flood_switch
+  sonos_say:
+    alias: "Sonos TTS script"
+    sequence:
+     - service: media_player.sonos_snapshot
+       data_template:
+         entity_id: "{{ sonos_entity }}"
+     - service: media_player.sonos_unjoin
+       data_template:
+         entity_id: "{{ sonos_entity }}"
+     - service: media_player.volume_set
+       data_template:
+         entity_id: "{{ sonos_entity }}"
+         volume_level: "{{ volume }}"
+     - service: tts.google_say
+       data_template:
+         entity_id: "{{ sonos_entity }}"
+         message: "{{ message }}"
+     - delay: "{{ delay }}"
+     - service: media_player.sonos_restore
+       data_template:
+         entity_id: "{{ sonos_entity }}"
+  wake_up:
+    sequence:
+      - service: light.turn_on
+        data: 
+          entity_id:
+            - light.pilot
+            - light.copilot
+          brightness: 255
+          xy_color: [0.3146,0.3304]
+          transition: 10
+      - delay: '00:00:05'
+      - service: script.sonos_say
+        data:
+          sonos_entity: media_player.master_bedroom
+          volume: 0.75
+          message: "Good Morning Marcus, it's time for work! Watch your eyes, I'm going to raise the lights some more."
+      - service: switch.turn_on
+        entity_id: switch.master_bedroom_switch
+      - wait_template: "{{ states.binary_sensor.ecolink_doorwindow_sensor_sensor_5.state == 'on' }}"
+      - service: homeassistant.turn_on
+        entity_id: scene.living_room_casual
+      - wait_template: "{{ states.binary_sensor.ecolink_doorwindow_sensor_sensor.state == 'on' }}"
+      - service: script.sonos_say
+        data:
+          sonos_entity: media_player.living_room
+          volume: 0.75
+          message: 'Got everything? Wallet, keys, phone, and vape? Do great things today, see ya later!'
+          delay: '00:00:15'
+  backhome:
+    sequence:
+      - service: mqtt.publish
+        data_template:
+          topic: cobbweb/led/porch/set
+          payload: '{"state": "ON", "effect": "noise"}'
+      - service: homeassistant.turn_on
+        entity_id: switch.front_flood_switch
+      - service: homeassistant.turn_on
+        entity_id: scene.living_room_formal
+      - wait_template: "{{ states.binary_sensor.ecolink_doorwindow_sensor_sensor.state == 'on' }}"
+        timeout: 00:10:00
+      - service: homeassistant.turn_on
+        entity_id: scene.living_room_casual
+      - wait_template: "{{ states.binary_sensor.ecolink_doorwindow_sensor_sensor.state == 'off' }}"
+      - service: homeassistant.turn_off
+        entity_id: switch.front_flood_switch
+      - service: light.turn_off
+        entity_id: light.porch_leds
+      - service: script.sonos_say
+        data:
+          sonos_entity: media_player.living_room
+          volume: 0.75
+          message: 'Welcome home Marcus!'
+          delay: '00:00:05'

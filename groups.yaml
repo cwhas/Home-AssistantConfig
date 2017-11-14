@@ -1,0 +1,164 @@
+default_view:
+  view: true
+  entities:
+  - device_tracker.marcus
+  - group.living_room
+  - group.dining_room
+  - group.kitchen
+  - group.office
+  - group.master_bedroom
+  - group.master_bathroom
+  - group.guest_bath
+  - group.outside
+  - group.short_data
+  name: default_view
+living_room:
+  name: Living Room
+  entities:
+  - switch.sofa_leds
+  - light.bloom
+  - light.foyer_lamp
+  - switch.living_room_light_switch
+  - switch.guest_hall_switch
+  - switch.front_window_lamp
+dining_room:
+  name: Dining Room
+  entities:
+  - light.bar_lamp
+  - light.buffet_ball
+  - light.hallway
+  - light.dining_room_table
+  - light.buffet_lamp
+  - light.mirror_leds
+  - switch.buffet_leds
+kitchen:
+  name: Kitchen
+  entities:
+  - light.kitchen_level
+  - light.kitchen_sink
+master_bedroom:
+  name: Master Bedroom
+  entities:
+  - light.pilot
+  - light.copilot
+  - switch.master_bedroom_switch
+master_bathroom:
+  name: Master Bathroom
+  entities:
+  - switch.master_bathroom_switch
+office:
+  name: Office
+  entities:
+  - group.light_tree
+  - switch.office_lamp
+  - light.office_closet
+  - switch.office_light_switch
+guest_bath:
+  name: Guest Bathroom
+  entities:
+  - switch.guest_shower_switch
+  - switch.guest_vanity_switch
+outside:
+  name: Outside
+  entities:
+  - switch.front_flood_switch
+  - switch.back_flood_switch
+  - light.porch_leds
+  # - switch.front_patio_switch
+  # - switch.back_patio_switch
+home_data:
+  name: Home Data
+  entities:
+  - sensor.dark_sky_temperature
+  - sensor.speedtest_download
+  - sensor.speedtest_upload
+  - binary_sensor.master_bathroom_motion_sensor
+  - binary_sensor.lilbee_occupancy
+  - binary_sensor.living_room_occupancy
+  - binary_sensor.office_door
+master_tab:
+  name: Master
+  view: true
+  entities:
+  - group.master_bathroom
+  - group.master_bedroom
+  - media_player.bathroom
+  - media_player.master_bedroom
+  - group.master_bathroom_sensor
+  - fan.bedroom_fan_level
+office_tab:
+  name: Office
+  view: true
+  entities:
+  - group.office
+  - media_player.office_home
+  - media_player.cobbcast
+  - sensor.lilbee_temperature
+  - switch.computer
+common_area_view:
+  name: Common Area
+  view: true
+  entities:
+  - group.living_room
+  - group.dining_room
+  - group.kitchen
+  - fan.living_room_fan_level
+  - media_player.marcast
+  - media_player.living_room
+  - sensor.living_room_temperature
+outside_view:
+  name: Outside
+  view: true
+  entities:
+  - switch.front_flood_switch
+  - switch.back_flood_switch
+  - light.porch_leds
+  - switch.front_patio_switch
+  - switch.back_patio_switch
+  - camera.driveway
+  - camera.front_door
+  - camera.backyard
+data_view:
+  name: Data
+  view: true
+  entities:
+  - group.home_data
+  - camera.amcrest_camera
+light_tree:
+  name: Light Tree
+  entities:
+  - light.lamp1
+  - light.lamp2
+  - light.lamp3
+short_data:
+  name: Data
+  entities:
+  - sensor.dark_sky_temperature
+  - sensor.trogdor_temperature
+master_bathroom_sensor:
+  name: Sensor
+  entities:
+  - sensor.master_bathroom_sensor_temperature
+  - sensor.master_bathroom_sensor_humidity
+  - sensor.master_bathroom_sensor_brightness
+  - sensor.master_bathroom_sensor_motion
+  - light.master_bathroom_sensor_led
+debug:
+  name: .
+  view: true
+  entities:
+  - scene.all_lights_off
+  - scene.living_room_casual
+  - scene.living_room_formal
+  - scene.night_mode
+  - light.master_bathroom_sensor_led
+  - group.alarm_clock
+  - input_boolean.test
+  - input_boolean.phone_charge
+alarm_clock:
+  name: 'Alarm Clock'
+  entities:
+  - sensor.alarm_clock_time
+  - input_number.alarm_clock_hour
+  - input_number.alarm_clock_minute
+  - input_boolean.alarm_clock_status

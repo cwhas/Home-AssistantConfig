@@ -1,0 +1,50 @@
+homeassistant:
+  name: The Cobbweb
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: imperial
+  time_zone: America/Chicago
+  customize: !include customize.yaml
+frontend:
+  themes:
+    brown:
+      primary-color: Brown
+    darkred:
+      primary-color: DarkRed
+config:
+http:
+  api_password: !secret http_password
+  base_url: !secret url
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+updater:
+conversation:
+discovery:
+history:
+logbook:
+sun:
+mqtt: !include mqtt.yaml
+ecobee:
+  api_key: !secret eco_key
+zwave:
+  usb_path: /dev/ttyACM0
+notify: !include notify.yaml
+sensor: !include sensor.yaml
+switch: !include switch.yaml
+light: !include light.yaml
+input_boolean: !include input_boolean.yaml
+input_number: !include input_number.yaml
+tts:
+  - platform: google
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+device_tracker: !include device_tracker.yaml
+camera: !include camera.yaml
+google_assistant: !include google_assistant.yaml
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+media_player: !include media_player.yaml
+scene: !include scenes.yaml
+google_domains: !include google_domains.yaml

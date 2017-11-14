@@ -1,0 +1,37 @@
+  - platform: wake_on_lan
+    mac_address: "90-2B-34-D9-83-42"
+    host: "10.0.0.10"
+    name: "Computer"
+
+  - platform: mqtt
+    name: "Sofa LEDs"
+    command_topic: "cmnd/sofa/power"
+    state_topic: "stat/sofa/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Office Lamp"
+    command_topic: "cmnd/officelamp/power"
+    state_topic: "stat/officelamp/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Front Window Lamp"
+    command_topic: "cmnd/windowlamp/power"
+    state_topic: "stat/windowlamp/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+  - platform: mqtt
+    name: "Buffet LEDs"
+    command_topic: "cmnd/buffetleds/power"
+    state_topic: "stat/buffetleds/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true

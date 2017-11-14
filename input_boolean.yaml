@@ -1,0 +1,25 @@
+  phone_charge:
+    name: Phone plugged In
+    initial: off
+  alarm_clock_status:
+    name: Alarm Clock Status
+    initial: off
+  hegone:
+    name: Girl Bye
+    initial: on
+  test:
+    name: Don't touch
+    initial: off
+###Modes###
+  morning:
+    name: Morning Mode
+    initial: off
+  away:
+    name: Away Mode
+    initial: off
+  guest_formal:
+    name: Guest Formal Mode
+    initial: off
+  guest_casual:
+    name: Guest Casual Mode
+    initial: off

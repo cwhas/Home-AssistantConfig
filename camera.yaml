@@ -1,0 +1,9 @@
+  - platform: ffmpeg
+    input: rtsp://admin:qXX0ctbaGQb1@10.0.0.13:8554/PSIA/streaming/channels/401
+    name: "Driveway"
+  - platform: ffmpeg
+    input: rtsp://admin:qXX0ctbaGQb1@10.0.0.13:8554/PSIA/streaming/channels/301
+    name: "Front Door"
+  - platform: ffmpeg
+    input: rtsp://admin:qXX0ctbaGQb1@10.0.0.13:8554/PSIA/streaming/channels/101
+    name: "Backyard"

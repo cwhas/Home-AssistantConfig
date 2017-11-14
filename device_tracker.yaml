@@ -1,0 +1,7 @@
+  - platform: ddwrt
+    host: !secret ddwrthost
+    username: !secret ddwrtusername
+    password: !secret ddwrtpassword
+    consider_home: 360
+    interval_seconds: 10
+    track_new_devices: false

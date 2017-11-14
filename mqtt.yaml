@@ -1,0 +1,5 @@
+  broker: localhost
+  port: 1883
+  client_id: home-assistant-1
+  username: !secret mqttusername
+  password: !secret mqttpassword

@@ -1,0 +1,69 @@
+    switch.living_room_light_switch:
+      friendly_name: Living Room Light
+    light.kitchen_level:
+      friendly_name: Kitchen Light
+    switch.aeotec_zw080_siren_gen5_switch:
+      google_assistant: false
+    switch.back_flood_switch:
+      friendly_name: Back Flood Light
+      google_assistant_type: light
+    switch.back_patio_switch:
+      google_assistant: false
+      friendly_name: Back Patio Light
+    switch.bathroom_fan_switch:
+      google_assistant: false
+      friendly_name: Fart Fan
+      google_assistant_type: fan
+    switch.front_flood_switch:
+      friendly_name: Front Flood Light
+      google_assistant_type: light
+    switch.front_patio_switch:
+      friendly_name: Front Patio Light
+      google_assistant: false
+    switch.guest_hall_switch:
+      friendly_name: Guest Hall Light
+      google_assistant_type: light
+    switch.guest_shower_switch:
+      friendly_name: Guest Shower Light
+      google_assistant_type: light
+    switch.guest_vanity_switch:
+      friendly_name: Guest Vanity Light
+      google_assistant_type: light
+    switch.master_bathroom_switch:
+      friendly_name: Bathroom Lights
+      google_assistant_type: light
+    switch.master_bedroom_switch:
+      friendly_name: Bedroom Lights
+      google_assistant_type: light
+    switch.office_light_switch:
+      friendly_name: Office Lights
+      google_assistant_type: light
+    group.master_bedroom:
+      google_assistant: true
+      google_assistant_type: light
+    fan.ge_12730_fan_control_switch_level:
+      friendly_name: Living Room Fan
+    fan.ge_12730_fan_control_switch_level_2:
+      friendly_name: Bedroom Fan
+# Alarm clock sensors
+    sensor.time:
+      hidden: true
+    sensor.alarm_clock_hour:
+      hidden: true
+    sensor.alarm_clock_minute:
+      hidden: true
+    sensor.alarm_clock_time_long:
+      hidden: true
+    sensor.alarm_clock_time:
+      friendly_name: 'Alarm Clock Setting'
+      icon: mdi:alarm
+# Alarm clock inputs
+    input_number.alarm_clock_hour:
+      friendly_name: 'Hour'
+      icon: mdi:timer
+    input_number.alarm_clock_minute:
+      friendly_name: 'Minute'
+      icon: mdi:timer
+    input_boolean.alarm_clock_status:
+      friendly_name: 'Alarm Clock Status'
+      icon: mdi:alarm-check

@@ -1,0 +1,407 @@
+  - name: Office Casual
+    entities:
+      switch.office_light_switch:
+        state: on
+      light.lamp3:
+        state: on
+        brightness: 255
+        effect: colorloop
+      light.lamp1:
+        state: on
+        brightness: 255
+        effect: colorloop
+      light.office_closet:
+        state: on
+        brightness: 254
+        effect: lifx_effect_colorloop
+      light.lamp2:
+        state: on
+        brightness: 255
+        effect: colorloop
+      switch.office_lamp:
+        state: on
+  - name: Office Off
+    entities:
+      light.lamp3:
+        state: off
+      light.lamp1:
+        state: off
+      light.office_closet:
+        state: off
+      switch.office_light_switch:
+        state: off
+      light.lamp2:
+        state: off
+      switch.office_lamp:
+        state: off
+  - name: Office Formal
+    entities:
+      light.lamp1:
+        state: on
+        xy_color: [0.4576,0.4099]
+        brightness: 255
+      light.lamp2:
+        state: on
+        xy_color: [0.4576,0.4099]
+        brightness: 255
+      light.lamp3:
+        state: on
+        xy_color: [0.4576,0.4099]
+        brightness: 255
+      light.office_closet:
+        state: on
+        brightness: 255
+      switch.office_light_switch:
+        state: on
+      switch.office_lamp:
+        state: on
+  - name: Living Room Formal
+    entities:
+      light.bar_lamp:
+        state: on
+        xy_color: [0.4576,0.4099]
+        brightness: 255
+      light.buffet_ball:
+        state: on
+        xy_color: [0.4576,0.4099]
+        brightness: 255
+      light.buffet_lamp:
+        state: on
+        xy_color: [.04576,0.4099]
+        brightness: 255
+      light.bloom:
+        state: on
+        xy_color: [0.4576,0.4099]
+        brightness: 255
+      light.dining_room_table:
+        state: on
+        xy_color: [0.4576,0.4099]
+        brightness: 255
+      light.foyer_lamp:
+        state: on
+        xy_color: [0.4576,0.4099]
+        brightness: 255
+      light.hallway:
+        state: on
+        xy_color: [0.4576,0.4099]
+        brightness: 255
+      switch.guest_hall_switch:
+        state: on
+      light.kitchen_level:
+        state: on
+        brightness: 255
+      switch.living_room_light_switch:
+        state: on
+      light.kitchen_sink:
+        state: on
+        brightness: 255
+        rgb_color: [255,255,255]
+      light.mirror_leds:
+        state: on
+      switch.sofa_leds:
+        state: on
+      switch.front_window_lamp:
+        state: on
+  - name: Living Room Casual
+    entities:
+      light.buffet_ball:
+        state: on
+        transition: 5
+        xy_color: [0.2733,0.1033]
+        brightness: 254
+      light.bloom:
+        state: on
+        transition: 5
+        xy_color: [0.5135,0.2901]
+        brightness: 254
+      light.dining_room_table:
+        state: on
+        transition: 5
+        xy_color: [0.173,0.0509]
+        brightness: 254
+      light.foyer_lamp:
+        state: on
+        transition: 5
+        xy_color: [0.2651,0.1005]
+        brightness: 254
+      light.hallway:
+        state: on
+        transition: 5
+        xy_color: [0.5825,0.3819]
+        brightness: 254
+      light.kitchen_sink:
+        state: on
+        brightness: 255
+        color_name: purple
+      light.kitchen_level:
+        state: on
+      light.mirror_leds:
+        state: on
+      light.bar_lamp:
+        state: on
+        brightness: 255
+        xy_color: [0.6729,0.3217]
+      light.buffet_lamp:
+        state: on
+        brightness: 255
+        xy_color: [0.409,0.518]
+      switch.living_room_light_switch:
+        state: off
+      switch.sofa_leds:
+        state: on
+      switch.buffet_leds:
+        state: on
+      switch.front_window_lamp:
+        state: on
+  - name: All Lights Off
+    entities:
+      light.bar_lamp:
+        state: off
+      light.buffet_lamp:
+        state: off
+      light.buffet_ball:
+        state: off
+      light.bloom:
+        state: off
+      light.copilot:
+        state: off
+      light.dining_room_table:
+        state: off
+      light.foyer_lamp:
+        state: off
+      light.hallway:
+        state: off
+      light.porch_leds:
+        state: off
+      light.kitchen_level:
+        state: off
+      light.kitchen_sink:
+        state: off
+      light.lamp1:
+        state: off
+      light.lamp2:
+        state: off
+      light.lamp3:
+        state: off
+      light.mirror_leds:
+        state: off
+      light.office_closet:
+        state: off
+      switch.office_lamp:
+        state: off
+      light.pilot:
+        state: off
+      switch.sofa_leds:
+        state: off
+      switch.buffet_leds:
+        state: off
+      switch.front_window_lamp:
+        state: off
+      switch.guest_hall_switch:
+        state: off
+      switch.guest_shower_switch:
+        state: off
+      switch.guest_vanity_switch:
+        state: off
+      switch.living_room_light_switch:
+        state: off
+      switch.master_bedroom_switch:
+        state: off
+      switch.office_light_switch:
+        state: off
+      switch.master_bathroom_switch:
+        state: off
+  - name: All Lights On
+    entities:
+      light.bar_lamp:
+        state: on
+      light.buffet_lamp:
+        state: on
+      light.buffet_ball:
+        state: on
+      light.bloom:
+        state: on
+      light.copilot:
+        state: on
+      light.dining_room_table:
+        state: on
+      light.foyer_lamp:
+        state: on
+      light.hallway:
+        state: on
+      light.kitchen_level:
+        state: on
+      light.kitchen_sink:
+        state: on
+      light.lamp1:
+        state: on
+      light.lamp2:
+        state: on
+      light.lamp3:
+        state: on
+      light.mirror_leds:
+        state: on
+      light.office_closet:
+        state: on
+      light.pilot:
+        state: on
+      switch.buffet_leds:
+        state: on
+      switch.office_lamp:
+        state: on
+      switch.front_window_lamp:
+        state: on
+      switch.guest_hall_switch:
+        state: on
+      switch.guest_shower_switch:
+        state: on
+      switch.guest_vanity_switch:
+        state: on
+      switch.living_room_light_switch:
+        state: on
+      switch.master_bedroom_switch:
+        state: on
+      switch.office_light_switch:
+        state: on
+      switch.master_bathroom_switch:
+        state: on
+      switch.sofa_leds:
+        state: on
+  - name: Night Mode
+    entities:
+      light.bar_lamp:
+        state: off
+      light.buffet_lamp:
+        state: off
+      light.buffet_ball:
+        state: off
+      light.bloom:
+        state: off
+      light.copilot:
+        state: on
+        transition: 5
+        xy_color: [0.6727,0.3218]
+        brightness: 100
+      light.dining_room_table:
+        state: off
+      light.foyer_lamp:
+        state: off
+      light.hallway:
+        state: off
+      light.kitchen_level:
+        state: off
+      light.kitchen_sink:
+        state: off
+      light.lamp1:
+        state: off
+      light.lamp2:
+        state: off
+      light.lamp3:
+        state: off
+      light.mirror_leds:
+        state: off
+      light.office_closet:
+        state: off
+      light.pilot:
+        state: on
+        transition: 5
+        xy_color: [0.6727,0.3218]
+        brightness: 100
+      switch.buffet_leds:
+        state: off
+      switch.office_lamp:
+        state: off
+      switch.front_window_lamp:
+        state: off
+      switch.guest_hall_switch:
+        state: off
+      switch.guest_shower_switch:
+        state: off
+      switch.guest_vanity_switch:
+        state: off
+      switch.living_room_light_switch:
+        state: off
+      switch.master_bedroom_switch:
+        state: off
+      switch.office_light_switch:
+        state: off
+      switch.master_bathroom_switch:
+        state: off
+      switch.sofa_leds:
+        state: off
+  - name: Bedroom Door Open
+    entities:
+      light.pilot:
+        state: on
+        xy_color: [0.2673,0.2378]
+        brightness: 254
+      light.copilot:
+        state: on
+        xy_color: [0.3154,0.3331]
+        brightness: 254
+  - name: yellow
+    entities:
+      light.bar_lamp:
+        state: on
+        color_name: yellow
+        flash: long
+      light.buffet_lamp:
+        state: on
+        color_name: yellow
+        flash: long
+      light.buffet_ball:
+        state: on
+        color_name: yellow
+        flash: long
+      light.bloom:
+        state: on
+        color_name: yellow
+        flash: long
+      light.copilot:
+        state: on
+        color_name: yellow
+        flash: long
+      light.dining_room_table:
+        state: on
+        color_name: yellow
+        flash: long
+      light.foyer_lamp:
+        state: on
+        color_name: yellow
+        flash: long
+      light.hallway:
+        state: on
+        color_name: yellow
+        flash: long
+      light.kitchen_level:
+        state: on
+        color_name: yellow
+        flash: long
+      light.kitchen_sink:
+        state: on
+        color_name: yellow
+        flash: long
+      light.lamp1:
+        state: on
+        color_name: yellow
+        flash: long
+      light.lamp2:
+        state: on
+        color_name: yellow
+        flash: long
+      light.lamp3:
+        state: on
+        color_name: yellow
+        flash: long
+      light.mirror_leds:
+        state: on
+        color_name: yellow
+        flash: long
+      light.office_closet:
+        state: on
+        color_name: yellow
+        flash: long
+      light.pilot:
+        state: on
+        color_name: yellow
+        flash: long

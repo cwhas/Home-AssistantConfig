@@ -1,0 +1,295 @@
+- id: mirror_animation_speed
+  alias: Mirror Animation Speed
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - platform: state
+    entity_id: input_slider.mirror_animation_speed
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: cobbweb/led/mirror/set
+      payload: '{"transition":{{ trigger.to_state.state | int }}}'
+- id: porch_animation_speed
+  alias: Porch Animation Speed
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - platform: state
+    entity_id: input_slider.porch_animation_speed
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: cobbweb/led/porch/set
+      payload: '{"transition":{{ trigger.to_state.state | int }}}'
+- id: back_flood
+  alias: Turn on flood lights when door opens
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_doorwindow_sensor_sensor_2
+    to: 'on'
+  condition:
+    condition: time
+    after: '16:00:00'
+    before: 08:00:00
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.timed_light_back_flood
+- id: patio_on
+  alias: Patio On
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+    offset: -01:00:00
+  action:
+    service: switch.turn_on
+    entity_id:
+    - switch.back_patio_switch
+    - switch.front_patio_switch
+- id: patio_off
+  alias: Patio Off
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: +01:00:00
+  action:
+    service: switch.turn_off
+    entity_id:
+    - switch.front_patio_switch
+    - switch.back_patio_switch
+- id: bath_lights
+  alias: Bathroom Light
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_motion_sensor_sensor
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: device_tracker.marcus
+    state: home
+  action:
+    service: switch.turn_on
+    entity_id:
+    - switch.master_bathroom_switch
+- id: guest_bath_lights
+  alias: Guest Bathroom
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_doorwindow_sensor_sensor_3
+    to: 'on'
+  action:
+    service: switch.turn_on
+    entity_id:
+    - switch.guest_vanity_switch
+    - switch.guest_shower_switch
+- id: im_home
+  alias: I'm home
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: device_tracker.marcus
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.marcus_bt
+      to: 'home'
+  condition:
+    condition: and
+    conditions:
+    - condition: time
+      after: '15:00:00'
+      before: '06:00:00'
+    - condition: state
+      entity_id: device_tracker.marcus
+      state: 'not_home'
+      for:
+        minutes: 10
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.backhome
+- id: reset_house
+  alias: Reset house when I leave
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: device_tracker.marcus
+    to: 'not_home'
+    for:
+      minutes: 2
+  action:
+    service: homeassistant.turn_on
+    entity_id:
+      - scene.all_lights_off
+- id: exhaust_fan_off
+  alias: Turn off exhaust fan after humidity recovers
+  initial_state: true
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.master_bathroom_sensor_humidity
+    below: 50
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.bathroom_fan_switch
+- id: exhaust_fan_on
+  alias: Turn on exhaust fan with humidity
+  initial_state: true
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.master_bathroom_sensor_humidity
+    above: 80
+  action:
+  - service: homeassistant.turn_on
+    entity_id: switch.bathroom_fan_switch
+- id: office_lights_on
+  alias: Office Lights On
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_doorwindow_sensor_sensor_4
+    to: 'on'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: scene.office_casual
+- id: office_lights_off
+  alias: Office Lights Off
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_doorwindow_sensor_sensor_4
+    to: 'off'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: scene.office_off
+- id: bedroom_light
+  alias: Bedroom Light
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: binary_sensor.ecolink_doorwindow_sensor_sensor_5
+    to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: scene.bedroom_door_open
+- id: night_mode_on
+  alias: Night Mode On
+  initial_state: true
+  trigger:
+  - entity_id: input_boolean.phone_charge
+    platform: state
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: time
+      after: '20:00:00'
+      before: '06:00:00'
+    - condition: state
+      entity_id: device_tracker.marcus
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.ecolink_doorwindow_sensor_sensor_5
+      state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      entity_id: scene.night_mode
+    - delay: 00:10:00
+    - service: light.turn_on
+      entity_id:
+        - light.pilot
+        - light.copilot
+      data: 
+        brightness: 0
+        transition: 600
+    - service: homeassistant.turn_on
+      entity_id: scene.all_lights_off
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.phone_charge
+- id: defaulttheme
+  alias: Set theme at startup
+  initial_state: true
+  trigger:
+   - platform: homeassistant
+     event: start
+  action:
+    service: frontend.set_theme
+    data:
+      name: brown
+# - id: dogsitting_on
+  # alias: Dogsitting On
+  # initial_state: true
+  # trigger:
+    # platform: state
+    # entity_id: switch.living_room_light_switch
+    # from: 'off'
+    # to: 'on'
+  # condition:
+    # condition: state
+    # entity_id: device_tracker.marcus
+    # state: not_home
+  # action:
+    # service: homeassistant.turn_on
+    # entity_id: scene.living_room_formal
+# - id: dogsitting_off
+  # alias: Dogsitting Off
+  # initial_state: true
+  # trigger:
+    # platform: state
+    # entity_id: switch.living_room_light_switch
+    # from: 'on'
+    # to: 'off'
+  # condition:
+    # condition: state
+    # entity_id: device_tracker.marcus
+    # state: not_home
+  # action:
+    # service: homeassistant.turn_on
+    # entity_id: scene.all_lights_off
+- id: alarm_clock
+  alias: 'Hue light on gradually with alarm'
+  hide_entity: False
+  trigger:
+    platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.alarm_clock_time_long.state }}'
+  condition:
+    condition: state
+    entity_id: input_boolean.alarm_clock_status
+    state: 'on'
+  action:
+    service: script.wake_up
+- id: test
+  alias: I told you not to touch it
+  hide_entity: false
+  trigger:
+    platform: state
+    entity_id: input_boolean.test
+    to: 'on'
+  action:
+    - service: tts.google_say
+      entity_id: media_player.master_bedroom
+      data:
+        message: "I thought you weren't supposed to touch that."
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.test
+    - delay: '00:00:02'
+    - service: tts.google_say
+      entity_id: media_player.bathroom
+      data:
+        message: "But you did anyway because you're a stupid bitchface. Love you!"
+- id: notify_away
+  alias: notification of departure
+  hide_entity: false
+  trigger:
+    platform: state
+    entity_id: device_tracker.marcus
+    to: 'not_home'
+  action:
+    service: notify.chrome_macphone
+    data:
+      message: "Safe travels - I'll shut down shop for ya."
+      title: "Girl Bye!"
+      data:
+        tag: 'girl_bye'

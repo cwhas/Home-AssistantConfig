@@ -1,0 +1,8 @@
+  project_id: !secret gaproject_id
+  client_id: !secret gaclient_id
+  access_token: !secret gaaccess_token
+  exposed_domains:
+    - switch
+    - light
+    - fan
+    - scene
